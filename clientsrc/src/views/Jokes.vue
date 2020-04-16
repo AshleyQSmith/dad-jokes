@@ -1,8 +1,12 @@
 <template>
+<b-container fluid>
+  <b-row>
   <div class="jokes text-center">
     <div v-if="$auth.isAuthenticated">
+       
       <b-button variant="success" v-b-modal.modal-1>Submit a Joke</b-button>
-
+    </div>
+    <small class="text-danger" v-else>You must log in to create a joke.</small>
       <b-modal id="modal-1" title="Submit a Joke" hide-footer-ok>
         <CreateJoke />
         <template v-slot:modal-footer>
@@ -10,11 +14,17 @@
         </template>
       </b-modal>
     </div>
-    <!-- <CreateJoke v-if="$auth.isAuthenticated" /> -->
-    <small class="text-danger" v-else>You must log in to create a joke.</small>
+    </b-row>
+
+    <b-row>
+   
     <!-- Jokes displayed below -->
+    <!-- <b-card-group deck> -->
     <Joke v-for="joke in jokes" :jokeData="joke" :key="joke._id"></Joke>
+      <!-- </b-card-group> -->
   </div>
+  </b-row>
+  </b-container>
 </template>
 
 
